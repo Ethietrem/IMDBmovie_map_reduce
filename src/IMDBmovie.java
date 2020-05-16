@@ -9,7 +9,6 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.SequenceFileAsBinaryOutputFormat;
-import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.log4j.Logger;
@@ -27,7 +26,6 @@ public class IMDBmovie extends Configured implements Tool {
         Job job = Job.getInstance(getConf(), "IMDBmovie");
         job.setJarByClass(this.getClass());
         FileInputFormat.addInputPath(job, new Path(args[1]));
-        //SequenceFileOutputFormat.setOutputPath(job, new Path(args[2]));
         SequenceFileAsBinaryOutputFormat.setOutputPath(job, new Path(args[2]));
         //FileOutputFormat.setOutputPath(job, new Path(args[2]));
         job.setMapperClass(IMDBMapper.class);
